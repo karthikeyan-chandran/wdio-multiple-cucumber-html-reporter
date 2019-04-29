@@ -31,6 +31,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FEATURE = 'Feature';
 var SCENARIO = 'Scenario';
 var NOT_KNOWN = 'not known';
+var isTestFailed = false;
 
 var MultipleCucumberHtmlReporter = function (_events$EventEmitter) {
     _inherits(MultipleCucumberHtmlReporter, _events$EventEmitter);
@@ -78,7 +79,7 @@ var MultipleCucumberHtmlReporter = function (_events$EventEmitter) {
         // this.on('runner:command', ::this.runnerCommand);
         _this.on('runner:end', _this.runnerEndCommand.bind(_this));
         _this.on('runner:after', _this.runnerAfterCommand.bind(_this));
-        //this.on('runner:result', ::this.runnerResult);
+        _this.on('runner:result', _this.runnerResult.bind(_this));
         _this.on('end', _this.onEnd.bind(_this));
         return _this;
     }
@@ -135,6 +136,7 @@ var MultipleCucumberHtmlReporter = function (_events$EventEmitter) {
         key: 'testFail',
         value: function testFail(test) {
             this.results[test.cid]._elements[test.parent].steps.push(this.getStepDataObject(test, 'failed'));
+            isTestFailed = true;
         }
     }, {
         key: 'testPending',

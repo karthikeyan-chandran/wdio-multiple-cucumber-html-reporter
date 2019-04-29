@@ -31,7 +31,7 @@
     "dependencies": {
         "babel-runtime": "^6.26.0",
         "fs-extra": "^6.0.1",
-        "multiple-cucumber-html-reporter": "^1.11.6"
+        "multiple-cucumber-html-reporter": "git+https://github.com/karthikeyan-chandran/multiple-cucumber-html-reporter.git"
     },
     "peerDependencies": {
         "wdio-cucumber-framework": "^2.2.0"
